@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: Signup(),
     );
   }
 }
 
-class LoginPage extends StatelessWidget {
+class Signup extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 

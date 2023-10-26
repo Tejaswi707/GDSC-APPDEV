@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'loginpage.dart'; // Import your Login page
 
 void main() => runApp(MyApp());
 
@@ -6,67 +7,93 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF3494E6),
-                Color(0xFFEC6EAD)
-              ], // Change these colors as needed
-            ),
+      initialRoute: '/', // Define the initial route
+      routes: {
+        '/': (context) =>
+            MainScreen(), // MainScreen is the page with the Login button
+        '/login': (context) => LoginPage(), // LoginPage is the Login page
+      },
+    );
+  }
+}
+
+class MainScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF3494E6),
+              Color(0xFFEC6EAD),
+            ],
           ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset('lib/images/hi.jpeg',
-                    width: 200), // Replace with your image asset path
+        ),
+        child: Stack(
+          children: <Widget>[
+            // New image circle at the top-left corner
+            Positioned(
+              top: 70,
+              left: 160,
+              child: CircleAvatar(
+                radius: 45,
+                backgroundImage: AssetImage(
+                    'lib/images/logo.png'), // Replace with your image asset path
+              ),
+            ),
 
-                SizedBox(height: 20),
+            // Text beside the image
+            Positioned(
+              top: 170,
+              left: 120,
+              child: Text(
+                'SOCIAL',
+                style: TextStyle(
+                  fontSize: 54, // Adjust the text size
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
 
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle Sign Up button press
-                  },
-                  child: Container(
-                    width: 200, // Increase the button width
-                    height: 60, // Increase the button height
-                    alignment: Alignment.center,
-                    child: Text('Sign Up',
+            Positioned(
+              top: 250,
+              left: 85,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset('lib/images/hello.jpg',
+                      width: 250), // Replace with your image asset path
+
+                  SizedBox(height: 40),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigate to Login page when Login button is pressed
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Container(
+                      width: 180, // Increase the button width
+                      height: 70, // Increase the button height
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Login',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20)), // Adjust text size
+                            fontSize: 24), // Adjust the text size
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.black,
+                    ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black, // Black background for Sign Up
-                  ),
-                ),
-
-                SizedBox(height: 10),
-
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle Login button press
-                  },
-                  child: Container(
-                    width: 200, // Increase the button width
-                    height: 60, // Increase the button height
-                    alignment: Alignment.center,
-                    child: Text('Login',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20)), // Adjust text size
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black, // Black background for Login
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

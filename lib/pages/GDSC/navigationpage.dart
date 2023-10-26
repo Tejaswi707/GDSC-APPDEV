@@ -38,7 +38,7 @@ class _NavigationPageState extends State<NavigationPage> {
     });
   }
 
-  Widget _buildNavigationItem(IconData icon, String label, int index) {
+  Widget _buildNavigationItem(IconData icon, int index) {
     final isSelected = _selectedIndex == index;
     return GestureDetector(
       onTap: () => _onItemTapped(index),
@@ -59,14 +59,6 @@ class _NavigationPageState extends State<NavigationPage> {
               color: isSelected ? Colors.white : Colors.black,
             ),
           ),
-          Text(
-            label,
-            style: TextStyle(
-              color: isSelected
-                  ? const Color.fromARGB(255, 195, 89, 214)
-                  : Colors.black,
-            ),
-          ),
         ],
       ),
     );
@@ -83,7 +75,7 @@ class _NavigationPageState extends State<NavigationPage> {
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
-              blurRadius: 3,
+              blurRadius: 4,
               offset: Offset(0, -1),
             ),
           ],
@@ -91,9 +83,9 @@ class _NavigationPageState extends State<NavigationPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            _buildNavigationItem(Icons.home, 'Home', 0),
-            _buildNavigationItem(Icons.person, 'Profile', 1),
-            _buildNavigationItem(Icons.settings, 'Settings', 2),
+            _buildNavigationItem(Icons.home, 0),
+            _buildNavigationItem(Icons.person, 1),
+            _buildNavigationItem(Icons.settings, 2),
           ],
         ),
       ),
